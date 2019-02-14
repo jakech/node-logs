@@ -47,18 +47,22 @@ function _log({ msg, level, context, backtrace }) {
 }
 
 function makeMethod(name) {
-  return function(msg = '', context = {}, backtrace) {
+  return function(msg = '', context = this._context, backtrace) {
     const isValid =
       typeof msg === 'string' &&
       (typeof context === 'object' || typeof context === 'string')
     if (!isValid) {
       throw new TypeError('invalid arguments')
     } else {
+      let mergedContext = this._context
+      if (typeof context === 'string') {
+        mergedContext = { ...mergedContext, ...context }
+      }
       console.log(
         _log.call(this, {
           level: name,
           msg,
-          context: typeof context === 'string' ? { data: context } : context,
+          context: mergedContext,
           backtrace
         })
       )
@@ -69,7 +73,8 @@ function makeMethod(name) {
 const METHODS = ['info', 'debug', 'warning', 'error', 'fatal']
 
 class Logger {
-  constructor() {
+  constructor(context = { user: 'system' }) {
+    this._context = context
     METHODS.map(method => (Logger.prototype[method] = makeMethod(method)))
   }
   static get _methods() {
