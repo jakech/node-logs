@@ -55,9 +55,10 @@ function makeMethod(name) {
       throw new TypeError('invalid arguments')
     } else {
       let mergedContext = this._context
-      if (typeof context === 'string') {
-        mergedContext = Object.assign({}, mergedContext, context)
+      if (typeof context !== 'object') {
+        mergedContext = Object.assign({}, mergedContext, { data: context })
       }
+      mergedContext = Object.assign({}, mergedContext, context)
       console.log(
         _log.call(this, {
           level: name,

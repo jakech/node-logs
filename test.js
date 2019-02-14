@@ -14,12 +14,10 @@ tap.test('instantiation', t => {
 tap.test('log format', t => {
   const methods = Logger._methods
   const log = new Logger()
-  log.log = m => Logger._log({ msg: 'test', level: m, context: { a: 1, b: 2, c: '3' } })
+  log.log = m =>
+    Logger._log({ msg: 'test', level: m, context: { a: 1, b: 2, c: '3' } })
   methods.map(m => {
-    t.matchSnapshot(
-      log.log(m),
-      m
-    )
+    t.matchSnapshot(log.log(m), m)
   })
   t.end()
 })
