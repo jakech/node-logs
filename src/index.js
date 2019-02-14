@@ -50,7 +50,7 @@ function makeMethod(name) {
   return function(msg = '', context = this._context, backtrace) {
     const isValid =
       typeof msg === 'string' &&
-      (typeof context === 'object' || typeof context === 'string')
+      (typeof context === 'object' || typeof context === 'string' || typeof context === 'number')
     if (!isValid) {
       throw new TypeError('invalid arguments')
     } else {
