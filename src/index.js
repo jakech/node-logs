@@ -57,8 +57,9 @@ function makeMethod(name) {
       let mergedContext = this._context
       if (typeof context !== 'object') {
         mergedContext = Object.assign({}, mergedContext, { data: context })
+      } else {
+        mergedContext = Object.assign({}, mergedContext, context)
       }
-      mergedContext = Object.assign({}, mergedContext, context)
       console.log(
         _log.call(this, {
           level: name,
