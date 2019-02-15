@@ -6,7 +6,7 @@
   "scripts": {
     "test": "TAP_SNAPSHOT=1 tap test.js",
     "compile": "babel --presets env -d lib/ src/",
-    "prepare": "npm run compile"
+    "prepare": "npm install && npm run compile"
   },
   "keywords": [
     "logs",
