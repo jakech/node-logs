@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "TAP_SNAPSHOT=1 tap test.js",
-    "compile": "babel --presets env -d lib/ src/",
-    "prepare": "npm run compile"
+    "build": "babel --presets env -d lib/ src/",
+    "prepare": "echo 'build' && npm run build"
   },
   "keywords": [
     "logs",
