@@ -6,7 +6,8 @@
   "scripts": {
     "test": "TAP_SNAPSHOT=1 tap test.js",
     "build": "babel --presets env -d lib/ src/",
-    "prepare": "echo 'build' && npm run build"
+    "prepublish": "echo 'prepublish' && npm run build",
+    "postinstall": "echo 'postinstall' && npm run build"
   },
   "keywords": [
     "logs",
